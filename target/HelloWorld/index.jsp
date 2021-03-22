@@ -13,7 +13,7 @@
 <body>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <div class="loginForm">
-    <form class="layui-form" method="post" action="./dologin.jsp">
+    <form class="layui-form" method="post" action="/login">
         <div class="layui-form-item">
             <div class="layui-inline">
                 <label class="layui-form-label">用户名</label>
