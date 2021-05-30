@@ -15,19 +15,30 @@ import java.io.IOException;
  * @Author DARKW
  * @Date 2021/3/22
  **/
-@WebServlet(name = "loginServlet",urlPatterns = "/login")
+@WebServlet(name = "LoginServlet", urlPatterns = "/login")
 public class LoginServlet extends HttpServlet {
+
+    private final LoginService loginService = new LoginService();
+
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        this.doGet(req, resp);
+    protected void doGet(HttpServletRequest req,
+                         HttpServletResponse resp) throws ServletException, IOException {
+        this.doPost(req, resp);
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-      req.setCharacterEncoding("utf-8");
-      resp.setCharacterEncoding("utf-8");
+    protected void doPost(HttpServletRequest req,
+                          HttpServletResponse resp) throws ServletException, IOException {
 
-      String username = req.getParameter("username");
-      String password = req.getParameter("password");
+        String username = req.getParameter("username");
+        String password = req.getParameter("password");
+
+        String result = loginService.login(username, password,
+                req.getSession());
+        if ("1".equals(result)) {
+            resp.sendRedirect("/main.jsp");
+        } else {
+            req.getRequestDispatcher("/index.jsp?message=" + result).forward(req, resp);
+        }
     }
 }

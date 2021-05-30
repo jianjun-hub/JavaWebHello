@@ -16,7 +16,6 @@ import java.sql.SQLException;
  * @Date 2021/3/22
  **/
 @AllArgsConstructor
-@NoArgsConstructor
 @Data
 public class LoginDao {
     public User selectOne(String username) {

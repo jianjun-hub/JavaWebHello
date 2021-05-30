@@ -11,27 +11,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>layout 后台大布局 - Layui</title>
+    <title>后台</title>
     <link rel="stylesheet" href="./layui/css/layui.css">
 </head>
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
     <div class="layui-header">
-        <div class="layui-logo" style="font-size: 25px">图书馆</div>
-        <!-- 头部区域（可配合layui已有的水平导航） -->
-        <ul class="layui-nav layui-layout-left">
-            <li class="layui-nav-item"><a href="">控制台</a></li>
-            <li class="layui-nav-item"><a href="">商品管理</a></li>
-            <li class="layui-nav-item"><a href="">用户</a></li>
-            <li class="layui-nav-item">
-                <a href="javascript:;">其它系统</a>
-                <dl class="layui-nav-child">
-                    <dd><a href="">邮件管理</a></dd>
-                    <dd><a href="">消息管理</a></dd>
-                    <dd><a href="">授权管理</a></dd>
-                </dl>
-            </li>
-        </ul>
+        <div class="layui-logo" style="font-size: 25px">图书管理系统</div>
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item">
                 <a href="javascript:;">
@@ -50,7 +36,7 @@
     <div class="layui-side layui-bg-black">
         <div class="layui-side-scroll">
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
-            <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+            <ul class="layui-nav layui-nav-tree" lay-filter="test">
                 <li class="layui-nav-item layui-nav-itemed">
                     <a class="" href="javascript:;">借阅服务</a>
                     <dl class="layui-nav-child">
@@ -75,15 +61,13 @@
                         <dd><a href="javascript:;">收藏列表</a></dd>
                     </dl>
                 </li>
-                <%--				<li class="layui-nav-item"><a href="">云市场</a></li>--%>
-                <%--				<li class="layui-nav-item"><a href="">发布商品</a></li>--%>
             </ul>
         </div>
     </div>
 
     <div class="layui-body">
         <div class="layui-tab layui-tab-brief" lay-filter="tabTemp"
-             lay-allowClose="true" >
+             lay-allowClose="true">
             <ul class="layui-tab-title">
 
             </ul>
@@ -101,20 +85,20 @@
 <script src="./layui/layui.js"></script>
 <script>
     //JavaScript代码区域
-    layui.use('element', function(){
+    layui.use('element', function () {
         var element = layui.element;
         var $ = layui.$;
-        $("[name=borrow]").click(function (){
+        $("[name=borrow]").click(function () {
             //获取当前项的id和content
             var id = $(this).attr("id");
             var content = $(this).attr("content");
             //判断标签是否存在
-            if ($("li[lay-id="+id+"]").length==0){
+            if ($("li[lay-id=" + id + "]").length == 0) {
                 //添加新标签
                 element.tabAdd("tabTemp", {
                     title: $(this).attr("title"),
                     content:
-                        "<iframe src='"+content+"' class='frame' frameborder='0'></iframe>",
+                        "<iframe src='" + content + "' class='frame' frameborder='0' width='100%' height='500px' ></iframe>",
                     id: id
                 });
             }

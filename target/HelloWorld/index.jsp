@@ -11,9 +11,10 @@
     </style>
 </head>
 <body>
+<%@include file="window.jsp" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <div class="loginForm">
-    <form class="layui-form" method="post" action="/login">
+    <form class="layui-form" method="post" action="/login" >
         <div class="layui-form-item">
             <div class="layui-inline">
                 <label class="layui-form-label">用户名</label>
@@ -32,6 +33,12 @@
                 </div>
             </div>
         </div>
+        <div class="layui-input-block" >
+            <input type="radio" name="role" value="0"
+                   title="管理员">
+            <input type="radio" name="role" value="1"
+                   title="用户" checked>
+        </div>
         <div class="layui-form-item">
             <button class="layui-btn" lay-submit="" >登录</button>
             <button type="button" class="layui-btn layui-btn-primary">注册</button>
@@ -39,5 +46,19 @@
     </form>
 </div>
 <script src="./layui/layui.js" charset="utf-8"></script>
+<script>
+    layui.use(`form`,function(){
+        var form = layui.form, $ = layui.$;
+
+        form.on('radio',function (data){
+            if(data.value === 0){
+                console.log("admin");
+                <% request.getSession().setAttribute("role","admin"); %>
+            }else {
+                <% request.getSession().setAttribute("role","user");%>
+            }
+        })
+    })
+</script>
 </body>
 </html>
